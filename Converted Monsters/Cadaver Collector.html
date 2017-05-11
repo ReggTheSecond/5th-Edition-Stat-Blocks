@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html><head><link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:700" rel="stylesheet" type="text/css"/><link href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic" rel="stylesheet" type="text/css"/><meta charset="utf-8"/><title></title><style>
+<html><head><link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:700" rel="stylesheet" type="text/css"/><link href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic" rel="stylesheet" type="text/css"/><meta charset="utf-8"/><title>Two-column statblock example</title><style>
       body {
         margin: 0;
       }
@@ -186,6 +186,48 @@
   });
   thatDoc.registerElement(elemName, {prototype: proto});
 })(window, document);
+</script><template id="property-line">
+  <style>
+    :host {
+      line-height: 1.4;
+      display: block;
+      text-indent: -1em;
+      padding-left: 1em;
+    }
+
+    ::content > h4 {
+      margin: 0;
+      display: inline;
+      font-weight: bold;
+    }
+
+    ::content > p:first-of-type {
+      display: inline;
+      text-indent: 0;
+    }
+
+    ::content > p {
+      text-indent: 1em;
+      margin: 0;
+    }
+  </style>
+  <content></content>
+</template><script>
+(function(window, document) {
+  var elemName = 'property-line';
+  var thatDoc = document;
+  var thisDoc = (thatDoc.currentScript || thatDoc._currentScript).ownerDocument;
+  var proto = Object.create(HTMLElement.prototype, {
+    createdCallback: {
+      value: function() {
+        var template = thisDoc.getElementById(elemName);
+        var clone = thatDoc.importNode(template.content, true);
+        this.createShadowRoot().appendChild(clone);
+      }
+    }
+  });
+  thatDoc.registerElement(elemName, {prototype: proto});
+})(window, document);
 </script><template id="property-block">
   <style>
     :host {
@@ -216,48 +258,6 @@
 </template><script>
 (function(window, document) {
   var elemName = 'property-block';
-  var thatDoc = document;
-  var thisDoc = (thatDoc.currentScript || thatDoc._currentScript).ownerDocument;
-  var proto = Object.create(HTMLElement.prototype, {
-    createdCallback: {
-      value: function() {
-        var template = thisDoc.getElementById(elemName);
-        var clone = thatDoc.importNode(template.content, true);
-        this.createShadowRoot().appendChild(clone);
-      }
-    }
-  });
-  thatDoc.registerElement(elemName, {prototype: proto});
-})(window, document);
-</script><template id="property-line">
-  <style>
-    :host {
-      line-height: 1.4;
-      display: block;
-      text-indent: -1em;
-      padding-left: 1em;
-    }
-
-    ::content > h4 {
-      margin: 0;
-      display: inline;
-      font-weight: bold;
-    }
-
-    ::content > p:first-of-type {
-      display: inline;
-      text-indent: 0;
-    }
-
-    ::content > p {
-      text-indent: 1em;
-      margin: 0;
-    }
-  </style>
-  <content></content>
-</template><script>
-(function(window, document) {
-  var elemName = 'property-line';
   var thatDoc = document;
   var thisDoc = (thatDoc.currentScript || thatDoc._currentScript).ownerDocument;
   var proto = Object.create(HTMLElement.prototype, {
@@ -381,7 +381,7 @@
 
 
 
-<stat-block>
+<stat-block data-content-height="705" data-two-column="">
   <creature-heading>
     <h1>Cadaver Collector</h1>
     <h2>Medium Construct, Neutral</h2>
@@ -482,5 +482,5 @@
         struck, but the collector automatically reattaches a new harpoon by the beginning of it's next turn.</p>
   </property-block>
 </stat-block>
-<img src="Cadaver Collector.JPG" valign="top"></img>
+<img src="images/Cadaver Collector.JPG" valign="top"></img>
 </body></html>
