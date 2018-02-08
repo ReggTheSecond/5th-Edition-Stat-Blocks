@@ -1,0 +1,42 @@
+
+<!-- saved from url=(0057)http://valloric.github.io/statblock5e/src/stat-block.html -->
+<html class="gr__valloric_github_io"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link href="./stat-block_files/css" rel="stylesheet" type="text/css">
+<template id="stat-block"></template>
+
+<script>
+(function(window, document) {
+  var elemName = 'stat-block';
+  var thatDoc = document;
+  var thisDoc = (thatDoc.currentScript || thatDoc._currentScript).ownerDocument;
+  var proto = Object.create(HTMLElement.prototype, {
+    createdCallback: {
+      value: function() {
+        var template = thisDoc.getElementById(elemName);
+        // If the attr() CSS3 function were properly implemented, we wouldn't
+        // need this hack...
+        if (this.hasAttribute('data-content-height')) {
+          var wrap = template.content.getElementById('content-wrap');
+          wrap.style.height = this.getAttribute('data-content-height') + 'px';
+        }
+        var clone = thatDoc.importNode(template.content, true);
+        this.createShadowRoot().appendChild(clone);
+      }
+    }
+  });
+  thatDoc.registerElement(elemName, {prototype: proto});
+})(window, document);
+</script>
+<style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style></head><body data-gr-c-s-loaded="true"></body></html>
