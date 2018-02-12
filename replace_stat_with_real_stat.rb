@@ -98,82 +98,91 @@ class StatBlockedParser
     end
   end
 
+  def start_parse(document)
+    return parse_strength(document)
+  end
+
   def parse_strength(document)
-    return document.gsub(/((\d\d<!-- \#strBonus\ -->|\d<!-- \#strBonus\ -->)|<!-- \#strBonus\ -->)/,
-    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@strength), get_proficiency_bonus(@challenge_rating))}<!-- (#strBonus) -->")
+    return parse_dexterity(document.gsub(/((\d\d<!-- \#strBonus\ -->|\d<!-- \#strBonus\ -->)|<!-- \#strBonus\ -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@strength), get_proficiency_bonus(@challenge_rating))}<!-- (#strBonus) -->"))
   end
 
   def parse_dexterity(document)
-    return document.gsub(/((\d\d<!-- \#dexBonus\ -->|\d<!-- \#dexBonus\ -->)|<!-- \#dexBonus\ -->)/,
-    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@dexterity), get_proficiency_bonus(@challenge_rating))}<!-- (#dexBonus) -->")
+    return parse_constitution(document.gsub(/((\d\d<!-- \#dexBonus\ -->|\d<!-- \#dexBonus\ -->)|<!-- \#dexBonus\ -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@dexterity), get_proficiency_bonus(@challenge_rating))}<!-- (#dexBonus) -->"))
   end
 
   def parse_constitution(document)
-    return document.gsub(/((\d\d<!-- \#conBonus\ -->|\d<!-- \#conBonus\ -->)|<!-- \#conBonus\ -->)/,
-    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@constitution), get_proficiency_bonus(@challenge_rating))}<!-- (#conBonus) -->")
+    return parse_intelligence(document.gsub(/((\d\d<!-- \#conBonus\ -->|\d<!-- \#conBonus\ -->)|<!-- \#conBonus\ -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@constitution), get_proficiency_bonus(@challenge_rating))}<!-- (#conBonus) -->"))
   end
 
   def parse_intelligence(document)
-    return document.gsub(/((\d\d<!-- \#intBonus\ -->|\d<!-- \#intBonus\ -->)|<!-- \#intBonus\ -->)/,
-    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@intelligence), get_proficiency_bonus(@challenge_rating))}<!-- (#intBonus) -->")
+    return parse_wisdom(document.gsub(/((\d\d<!-- \#intBonus\ -->|\d<!-- \#intBonus\ -->)|<!-- \#intBonus\ -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@intelligence), get_proficiency_bonus(@challenge_rating))}<!-- (#intBonus) -->"))
   end
 
   def parse_wisdom(document)
-    return document.gsub(/((\d\d<!-- \#wisBonus\ -->|\d<!-- \#wisBonus\ -->)|<!-- \#wisBonus\ -->)/,
-    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@wisdom), get_proficiency_bonus(@challenge_rating))}<!-- (#wisBonus) -->")
+    return parse_charisma(document.gsub(/((\d\d<!-- \#wisBonus\ -->|\d<!-- \#wisBonus\ -->)|<!-- \#wisBonus\ -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@wisdom), get_proficiency_bonus(@challenge_rating))}<!-- (#wisBonus) -->"))
   end
 
   def parse_charisma(document)
-    return document.gsub(/((\d\d<!-- \#chaBonus\ -->|\d<!-- \#chaBonus\ -->)|<!-- \#chaBonus\ -->)/,
-    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@charisma), get_proficiency_bonus(@challenge_rating))}<!-- (#chaBonus) -->")
+    return parse_strength_with_proficency(document.gsub(/((\d\d<!-- \#chaBonus\ -->|\d<!-- \#chaBonus\ -->)|<!-- \#chaBonus\ -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@charisma), get_proficiency_bonus(@challenge_rating))}<!-- (#chaBonus) -->"))
   end
 
   def parse_strength_with_proficency(document)
-    return document.gsub(/((\d\d<!-- \(#strBonus\+#proficiencyBonus\) -->|\d<!-- \(#strBonus\+#proficiencyBonus\) -->)|<!-- \(#strBonus\+#proficiencyBonus\) -->)/,
-    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@strength), get_proficiency_bonus(@challenge_rating))}<!-- (#strBonus+#proficiencyBonus) -->")
+    return parse_dexterity_with_proficency(document.gsub(/((\d\d<!-- \(#strBonus\+#proficiencyBonus\) -->|\d<!-- \(#strBonus\+#proficiencyBonus\) -->)|<!-- \(#strBonus\+#proficiencyBonus\) -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@strength), get_proficiency_bonus(@challenge_rating))}<!-- (#strBonus+#proficiencyBonus) -->"))
   end
 
   def parse_dexterity_with_proficency(document)
-    return document.gsub(/((\d\d<!-- \(#dexBonus\+#proficiencyBonus\) -->|\d<!-- \(#dexBonus\+#proficiencyBonus\) -->)|<!-- \(#dexBonus\+#proficiencyBonus\) -->)/,
-    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@dexterity), get_proficiency_bonus(@challenge_rating))}<!-- (#dexBonus+#proficiencyBonus) -->")
+    return parse_constitution_with_proficency(document.gsub(/((\d\d<!-- \(#dexBonus\+#proficiencyBonus\) -->|\d<!-- \(#dexBonus\+#proficiencyBonus\) -->)|<!-- \(#dexBonus\+#proficiencyBonus\) -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@dexterity), get_proficiency_bonus(@challenge_rating))}<!-- (#dexBonus+#proficiencyBonus) -->"))
   end
 
   def parse_constitution_with_proficency(document)
-    return document.gsub(/((\d\d<!-- \(#conBonus\+#proficiencyBonus\) -->|\d<!-- \(#conBonus\+#proficiencyBonus\) -->)|<!-- \(#conBonus\+#proficiencyBonus\) -->)/,
-    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@constitution), get_proficiency_bonus(@challenge_rating))}<!-- (#conBonus+#proficiencyBonus) -->")
+    return parse_intelligence_with_proficency(document.gsub(/((\d\d<!-- \(#conBonus\+#proficiencyBonus\) -->|\d<!-- \(#conBonus\+#proficiencyBonus\) -->)|<!-- \(#conBonus\+#proficiencyBonus\) -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@constitution), get_proficiency_bonus(@challenge_rating))}<!-- (#conBonus+#proficiencyBonus) -->"))
   end
 
   def parse_intelligence_with_proficency(document)
-    return document.gsub(/((\d\d<!-- \(#intBonus\+#proficiencyBonus\) -->|\d<!-- \(#intBonus\+#proficiencyBonus\) -->)|<!-- \(#intBonus\+#proficiencyBonus\) -->)/,
-    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@intelligence), get_proficiency_bonus(@challenge_rating))}<!-- (#intBonus+#proficiencyBonus) -->")
+    return parse_wisdom_with_proficency(document.gsub(/((\d\d<!-- \(#intBonus\+#proficiencyBonus\) -->|\d<!-- \(#intBonus\+#proficiencyBonus\) -->)|<!-- \(#intBonus\+#proficiencyBonus\) -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@intelligence), get_proficiency_bonus(@challenge_rating))}<!-- (#intBonus+#proficiencyBonus) -->"))
   end
 
   def parse_wisdom_with_proficency(document)
-    return document.gsub(/((\d\d<!-- \(#wisBonus\+#proficiencyBonus\) -->|\d<!-- \(#wisBonus\+#proficiencyBonus\) -->)|<!-- \(#wisBonus\+#proficiencyBonus\) -->)/,
-    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@wisdom), get_proficiency_bonus(@challenge_rating))}<!-- (#wisBonus+#proficiencyBonus) -->")
+    return parse_charisma_with_proficency(document.gsub(/((\d\d<!-- \(#wisBonus\+#proficiencyBonus\) -->|\d<!-- \(#wisBonus\+#proficiencyBonus\) -->)|<!-- \(#wisBonus\+#proficiencyBonus\) -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@wisdom), get_proficiency_bonus(@challenge_rating))}<!-- (#wisBonus+#proficiencyBonus) -->"))
   end
 
   def parse_charisma_with_proficency(document)
-    return document.gsub(/((\d\d<!-- \(#chaBonus\+#proficiencyBonus\) -->|\d<!-- \(#chaBonus\+#proficiencyBonus\) -->)|<!-- \(#chaBonus\+#proficiencyBonus\) -->)/,
-    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@charisma), get_proficiency_bonus(@challenge_rating))}<!-- (#chaBonus+#proficiencyBonus) -->")
+    return parse_passive_perception(document.gsub(/((\d\d<!-- \(#chaBonus\+#proficiencyBonus\) -->|\d<!-- \(#chaBonus\+#proficiencyBonus\) -->)|<!-- \(#chaBonus\+#proficiencyBonus\) -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@charisma), get_proficiency_bonus(@challenge_rating))}<!-- (#chaBonus+#proficiencyBonus) -->"))
   end
 
   def parse_passive_perception(document)
-    return document.gsub(/((\d<!-- \(#passivePerception\) -->|\d\d<!-- \(#passivePerception\) -->)|<!-- \(#passivePerception\) -->)/,
-    "#{get_passive_perception(get_attribute_bonus(@wisdom), 0)}<!-- (#passivePerception+#proficiencyBonus) -->")
+    return parse_passive_perception_with_proficency(document.gsub(/((\d<!-- \(#passivePerception\) -->|\d\d<!-- \(#passivePerception\) -->)|<!-- \(#passivePerception\) -->)/,
+    "#{get_passive_perception(get_attribute_bonus(@wisdom), 0)}<!-- (#passivePerception+#proficiencyBonus) -->"))
   end
 
   def parse_passive_perception_with_proficency(document)
-    return document.gsub(/((\d<!-- \(#passivePerception\+#proficiencyBonus\) -->|\d\d<!-- \(#passivePerception\+#proficiencyBonus\) -->)|<!-- \(#passivePerception\+#proficiencyBonus\) -->)/,
+    if document.include?("<!-- \(#spellSaveDC:...\) -->")
+      return parse_spell_save_dc(document.gsub(/((\d<!-- \(#passivePerception\+#proficiencyBonus\) -->|\d\d<!-- \(#passivePerception\+#proficiencyBonus\) -->)|<!-- \(#passivePerception\+#proficiencyBonus\) -->)/,
+    "#{get_passive_perception(get_attribute_bonus(@wisdom), get_proficiency_bonus(@challenge_rating))}<!-- (#passivePerception+#proficiencyBonus) -->"))
+    else
+      return document.gsub(/((\d<!-- \(#passivePerception\+#proficiencyBonus\) -->|\d\d<!-- \(#passivePerception\+#proficiencyBonus\) -->)|<!-- \(#passivePerception\+#proficiencyBonus\) -->)/,
     "#{get_passive_perception(get_attribute_bonus(@wisdom), get_proficiency_bonus(@challenge_rating))}<!-- (#passivePerception+#proficiencyBonus) -->")
+    end
   end
 
   def parse_spell_save_dc(document)
-    return document.gsub(/((\d<!-- \(#spellSaveDC:...\) -->|\d\d<!-- \(#spellSaveDC:...\) -->)|<!-- \(#spellSaveDC:...\) -->)/,
+    return parse_spell_attack_bonus(document.gsub(/((\d<!-- \(#spellSaveDC:...\) -->|\d\d<!-- \(#spellSaveDC:...\) -->)|<!-- \(#spellSaveDC:...\) -->)/,
     "#{
     get_spell_save(
       spell_save_attribute(get_spell_save_attribute(document), strength, dexterity, constitution, intelligence, wisdom, charisma),
-        get_proficiency_bonus(@challenge_rating))}<!-- (#spellSaveDC:#{get_spell_save_attribute(document)}) -->")
+        get_proficiency_bonus(@challenge_rating))}<!-- (#spellSaveDC:#{get_spell_save_attribute(document)}) -->"))
   end
 
   def parse_spell_attack_bonus(document)
@@ -188,6 +197,22 @@ end
 stat_block_parser = StatBlockedParser.new()
 
 directory_file_name = ARGV[0]
+
+if directory_file_name == nil
+  begin
+    puts "You did not enter a file to have the stat filled in. Would you like to fill in the stats for all character sheets in this directory and all sub directories? (y/n)"
+    answer = gets.chomp
+    answer = answer.downcase.strip
+  end while answer != "y" && answer != "n"
+  begin
+    if answer == "n"
+      puts "Please specify a file:"
+      directory_file_name = gets.chomp
+    else
+      abort
+    end
+  end while !File.exist?(directory_file_name)
+end
 
 document = ""
 file = File.open(directory_file_name, "a+")
@@ -211,22 +236,7 @@ file.each_line do |line|
   document << line
 end
 
-document = stat_block_parser.parse_strength(document)
-document = stat_block_parser.parse_dexterity(document)
-document = stat_block_parser.parse_constitution(document)
-document = stat_block_parser.parse_intelligence(document)
-document = stat_block_parser.parse_wisdom(document)
-document = stat_block_parser.parse_charisma(document)
-document = stat_block_parser.parse_strength_with_proficency(document)
-document = stat_block_parser.parse_dexterity_with_proficency(document)
-document = stat_block_parser.parse_constitution_with_proficency(document)
-document = stat_block_parser.parse_intelligence_with_proficency(document)
-document = stat_block_parser.parse_wisdom_with_proficency(document)
-document = stat_block_parser.parse_charisma_with_proficency(document)
-document = stat_block_parser.parse_passive_perception(document)
-document = stat_block_parser.parse_passive_perception_with_proficency(document)
-document = stat_block_parser.parse_spell_save_dc(document)
-document = stat_block_parser.parse_spell_attack_bonus(document)
+document = stat_block_parser.start_parse(document)
 
 file.truncate(0)
 
