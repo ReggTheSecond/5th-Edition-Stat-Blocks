@@ -54,22 +54,23 @@
                          data-wis="27"
                          data-cha="19">
         </abilities-block>
-
+        <property-line>
+          <h4>Challenge:</h4><p>17 (18000 XP)</p>
+        </property-line>
         <property-line>
           <h4>Saving Throws:</h4>
-          <p>Con 11, Int +13, Wis +14, Cha +10</p>
+          <p>Con 9<!-- (#conBonus+#proficiencyBonus) -->,
+            Int +13<!-- (#intBonus+#proficiencyBonus) -->,
+            Wis +14<!-- (#wisBonus+#proficiencyBonus) -->,
+            Cha +10<!-- (#chaBonus+#proficiencyBonus) --></p>
         </property-line>
         <property-line>
           <h4>Skills:</h4>
-          <p>Arcana +13, History +13, Insight +14, Invesigation +13, Perception 14</p>
-        </property-line>
-        <property-line>
-          <h4>Damage Vulnerabilities:</h4>
-          <p>-</p>
-        </property-line>
-        <property-line>
-          <h4>Damage Immunities:</h4>
-          <p>-</p>
+          <p>Arcana +13<!-- (#intBonus+#proficiencyBonus) -->,
+            History +13<!-- (#intBonus+#proficiencyBonus) -->,
+            Insight +14<!-- (#wisBonus+#proficiencyBonus) -->,
+            Invesigation14<!-- (#wisBonus+#proficiencyBonus) --> +13,
+            Perception 14<!-- (#wisBonus+#proficiencyBonus) --></p>
         </property-line>
         <property-line>
           <h4>Damage Resistances:</h4>
@@ -81,15 +82,11 @@
         </property-line>
         <property-line>
           <h4>Senses:</h4>
-          <p>blindsight 60ft., darkvision 120ft., passive perception 24</p>
+          <p>blindsight 60ft., darkvision 120ft., passive Perception 24<!-- (#passivePerception+#proficiencyBonus) --></p>
         </property-line>
         <property-line>
           <h4>Languages:</h4>
           <p>Common, Dragonic</p>
-        </property-line>
-        <property-line>
-          <h4>Challenge:</h4>
-          <p>17 (18000 XP)</p>
         </property-line>
       </top-stats>
       <property-block>
@@ -99,8 +96,8 @@
 
       <property-block>
         <h4>Innate Spellcasting.</h4>
-          <p>The Amethyst Dragon spellcasting ability is Intelligence (spell save DC 22, +14 to hit). The Sapphire Dragon can innately cast the following spells,
-            requiring no material components:</p>
+          <p>The Amethyst Dragon spellcasting ability is Intelligence (spell save DC 21<!-- (#spellSaveDC:int) -->, +13<!-- (#spellAttackBonus:int) --> to hit).
+            The Sapphire Dragon can innately cast the following spells, requiring no material components:</p>
             <p>3/day each: greater restoration</p>
             <p>6/day each: water walk, neutralize poison, </p>
       </property-block>
@@ -112,18 +109,18 @@
       </property-block>
       <property-block>
         <h4>Bite.</h4>
-        <p><i>Melee Weapon Attack:</i> +9 to hit, reach 10 ft., one target.</p>
-        <p><i>Hit 10 (2d10 + 3) piercing damage</i></p>
+        <p><i>Melee Weapon Attack:</i> +9<!-- (#strBonus+#proficiencyBonus) --> to hit, reach 10 ft., one target.</p>
+        <p><i>Hit 10 (2d10 + 3<!-- (#strBonus) -->) piercing damage</i></p>
       </property-block>
       <property-block>
         <h4>Claw.</h4>
-        <p><i>Melee Weapon Attack:</i> +9 to hit, reach 5 ft., one target.</p>
-        <p><i>Hit 10 (2d6 + 3) shashing damage</i></p>
+        <p><i>Melee Weapon Attack:</i> +9<!-- (#strBonus+#proficiencyBonus) --> to hit, reach 5 ft., one target.</p>
+        <p><i>Hit 10 (2d6 + 3<!-- (#strBonus) -->) shashing damage</i></p>
       </property-block>
       <property-block>
         <h4>Tail.</h4>
-        <p><i>Melee Weapon Attack:</i> +9 to hit, reach 15 ft., one target.</p>
-        <p><i>Hit 10 (2d8 + 3) bludgeoning damage</i></p>
+        <p><i>Melee Weapon Attack:</i> +9<!-- (#strBonus+#proficiencyBonus) --> to hit, reach 15 ft., one target.</p>
+        <p><i>Hit 10 (2d8 + 3<!-- (#strBonus) -->) bludgeoning damage</i></p>
       </property-block>
       <property-block>
         <h4>Frightful Presence.</h4>

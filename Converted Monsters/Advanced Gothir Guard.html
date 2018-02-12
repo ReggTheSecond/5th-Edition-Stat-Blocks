@@ -47,28 +47,27 @@
           <p>30 ft.</p>
         </property-line>
 
-        <abilities-block data-str="14"
+        <abilities-block data-str="16"
                          data-dex="12"
                          data-con="12"
                          data-int="10"
-                         data-wis="11"
+                         data-wis="12"
                          data-cha="10">
         </abilities-block>
         <property-line>
+          <h4>Challenge:</h4><p>2 (450 XP)</p>
+        </property-line>
+        <property-line>
           <h4>Skills:</h4>
-          <p>Perception +3</p>
+          <p>Perception +3<!-- (#wisBonus+#proficiencyBonus) --></p>
         </property-line>
         <property-line>
           <h4>Senses:</h4>
-          <p>Passive perception +3</p>
+          <p>passive Perception 13<!-- (#passivePerception+#proficiencyBonus) --></p>
         </property-line>
         <property-line>
           <h4>Languages:</h4>
           <p>Common</p>
-        </property-line>
-        <property-line>
-          <h4>Challenge:</h4>
-          <p>-</p>
         </property-line>
       </top-stats>
 
@@ -76,13 +75,13 @@
 
       <property-block>
         <h4>Spear.</h4>
-        <p><i>Melee or Ranged Weapon Attack:</i> +5 to hit, reach 5ft. or range 20/60ft., one target.</p>
-        <p><i>Hit:</i> (1d6 +2) piercing damage or (1d8 +2) piercing damage if used with two hands to make a melee attack</p>
+        <p><i>Melee or Ranged Weapon Attack:</i> +5<!-- (#strBonus+#proficiencyBonus) --> to hit, reach 5ft. or range 20/60ft., one target.</p>
+        <p><i>Hit:</i> (1d6 +5<!-- (#strBonus) -->) piercing damage or (1d8 +5<!-- #strBonus -->) piercing damage if used with two hands to make a melee attack</p>
       </property-block>
       <property-block>
         <h4>Light Crossbow.</h4>
-        <p><i>Ranged Weapon Attack:</i> +3 to hit, reach 5ft. or range 80/320ft., one target.</p>
-        <p><i>Hit:</i> (1d8 +1) piercing damage</p>
+        <p><i>Ranged Weapon Attack:</i> +3<!-- (#dexBonus+#proficiencyBonus) --> to hit, reach 5ft. or range 80/320ft., one target.</p>
+        <p><i>Hit:</i> (1d8 +3<!-- (#strBonus) -->) piercing damage</p>
       </property-block>
     </stat-block>
   </body>

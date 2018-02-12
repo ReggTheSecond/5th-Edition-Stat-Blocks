@@ -1,131 +1,234 @@
-=begin
-  When this script is complete the workflow will be:
+class StatBlockedParser
+  attr_accessor :strength
+  attr_accessor :dexterity
+  attr_accessor :constitution
+  attr_accessor :intelligence
+  attr_accessor :wisdom
+  attr_accessor :charisma
+  attr_accessor :challenge_rating
 
-  - Run the script, pass a html stat block
-  - The Script will then:
-    - Determine if there is a hidden document in the directory that shares a file name
-    - If there is a hidden version of the pre prased document the script will ask if you want to use the attributes in the new file to update the parseable options in the old versions
-    -
-=end
-
-def get_attribute(line)
-  thing = line.strip().split("=\"").last().split(/\"$/).first()
-  return thing.to_i
-end
-
-def get_challenge_rate(line)
-  thing = line.strip().split("<p>").last().split("</p>").first().split("(").first()
-  return thing.to_i
-end
-
-def get_attribute_bonus(attribute_score)
-  if attribute_score > 10
-    attribute_score = (attribute_score - 10) / 2
-  elsif attribute_score == 10
-    attribute_score = 0
-  else
-    attribute_score = attribute_score / 2
-    attribute_score = attribute_score - (attribute_score + 1)
+  def get_attribute(line)
+    thing = line.strip().split("=\"").last().split(/\"$/).first()
+    return thing.to_i
   end
-  return attribute_score
-end
 
-def get_proficiency_bonus(challenge_rating)
-  if challenge_rating < 4
-    proficiency_bonus = 2
-  elsif challenge_rating >= 5 && challenge_rating < 9
-    proficiency_bonus = 3
-  elsif challenge_rating >= 9 && challenge_rating < 13
-    proficiency_bonus = 4
-  elsif challenge_rating >= 13 && challenge_rating < 17
-    proficiency_bonus = 5
-  elsif challenge_rating >= 17 && challenge_rating < 21
-    proficiency_bonus = 6
-  elsif challenge_rating >= 21 && challenge_rating < 25
-    proficiency_bonus = 7
-  elsif challenge_rating >= 25 && challenge_rating < 29
-    proficiency_bonus = 8
-  elsif challenge_rating >= 29
-    proficiency_bonus = 9
+  def get_challenge_rate(line)
+    thing = line.strip().split("<p>").last().split("</p>").first().split("(").first()
+    return thing.to_i
   end
-  return proficiency_bonus
-end
 
-def get_attribute_bonus_plus_proficiency_bonus(attribute_bonus, proficiency_bonus)
-  return attribute_bonus + proficiency_bonus
-end
-
-def add_bonuses_to_html_stat_block(line, strength, dexterity, constitution, intelligence, wisdom, charisma, challenge_rating)
-  if line.match /\(#strBonus\+#proficiencyBonus\)/
-    line = line.gsub("(#strBonus+#proficiencyBonus)", "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(strength), get_proficiency_bonus(challenge_rating))}")
-  elsif  line.match /\(#dexBonus\+#proficiencyBonus\)/
-    line = line.gsub("(#strBonus+#proficiencyBonus)", "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(dexterity), get_proficiency_bonus(challenge_rating))}")
-  elsif  line.match /\(#conBonus\+#proficiencyBonus\)/
-    line = line.gsub("(#strBonus+#proficiencyBonus)", "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(constitution), get_proficiency_bonus(challenge_rating))}")
-  elsif  line.match /\(#intBonus\+#proficiencyBonus\)/
-    line = line.gsub("(#strBonus+#proficiencyBonus)", "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(intelligence), get_proficiency_bonus(challenge_rating))}")
-  elsif  line.match /\(#wisBonus\+#proficiencyBonus\)/
-    line = line.gsub("(#strBonus+#proficiencyBonus)", "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(wisdom), get_proficiency_bonus(challenge_rating))}")
-  elsif  line.match /\(#chaBonus\+#proficiencyBonus\)/
-    line = line.gsub("(#strBonus+#proficiencyBonus)", "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(charisma), get_proficiency_bonus(challenge_rating))}")
-  elsif line.match /#strBonus/
-    line = line.gsub("#strBonus", "#{get_attribute_bonus(strength)}")
-  elsif line.match /#dexBonus/
-    line =  line.gsub("#dexBonus", "#{get_attribute_bonus(dexterity)}")
-  elsif line.match /#conBonus/
-    line =  line.gsub("#conBonus", "#{get_attribute_bonus(constitution)}")
-  elsif line.match /#intBonus/
-    line =  line.gsub("#intBonus", "#{get_attribute_bonus(intelligence)}")
-  elsif line.match /#wisBonus/
-    line =  line.gsub("#wisBonus", "#{get_attribute_bonus(wisdom)}")
-  elsif line.match /#chaBonus/
-    line =  line.gsub("#chaBonus", "#{get_attribute_bonus(charisma)}")
+  def get_attribute_bonus(attribute_score)
+    if attribute_score > 10
+      attribute_score = (attribute_score - 10) / 2
+    elsif attribute_score == 10
+      attribute_score = 0
+    else
+      attribute_score = attribute_score / 2
+      attribute_score = attribute_score - (attribute_score + 1)
+    end
+    return attribute_score
   end
-  return line
+
+  def get_proficiency_bonus(challenge_rating)
+    if challenge_rating <= 4
+      proficiency_bonus = 2
+    elsif challenge_rating >= 5 && challenge_rating < 9
+      proficiency_bonus = 3
+    elsif challenge_rating >= 9 && challenge_rating < 13
+      proficiency_bonus = 4
+    elsif challenge_rating >= 13 && challenge_rating < 17
+      proficiency_bonus = 5
+    elsif challenge_rating >= 17 && challenge_rating < 21
+      proficiency_bonus = 6
+    elsif challenge_rating >= 21 && challenge_rating < 25
+      proficiency_bonus = 7
+    elsif challenge_rating >= 25 && challenge_rating < 29
+      proficiency_bonus = 8
+    elsif challenge_rating >= 29
+      proficiency_bonus = 9
+    end
+    return proficiency_bonus
+  end
+
+  def get_attribute_bonus_plus_proficiency_bonus(attribute_bonus, proficiency_bonus)
+    return attribute_bonus + proficiency_bonus
+  end
+
+  def get_passive_perception(wisdom, proficiencyBonus)
+    return 10 + wisdom + proficiencyBonus
+  end
+
+  def spell_save_attribute(spell_attribute, strength, dexterity, constitution, intelligence, wisdom, charisma)
+    if spell_attribute == "str"
+      return strength
+    elsif spell_attribute == "dex"
+      return dexterity
+    elsif spell_attribute == "con"
+      return constitution
+    elsif spell_attribute == "int"
+      return intelligence
+    elsif spell_attribute == "wis"
+      return wisdom
+    elsif spell_attribute == "cha"
+      return charisma
+    end
+  end
+
+  def get_spell_save(spell_attribute, proficiency_bonus)
+    return 8 + get_attribute_bonus(spell_attribute) + proficiency_bonus
+  end
+
+  def get_spell_attack(spell_attribute, proficiency_bonus)
+    return get_attribute_bonus(spell_attribute) + proficiency_bonus
+  end
+
+  def get_spell_save_attribute(document)
+    document.each_line do |line|
+      if line.match(/((\d<!-- \(#spellSaveDC:...\) -->|\d\d<!-- \(#spellSaveDC:...\) -->)|<!-- \(#spellSaveDC:...\) -->)/)
+        return line.split("spellSaveDC:").last().split(") -->").first()
+      end
+    end
+  end
+
+  def get_spell_attack_attribute(document)
+    document.each_line do |line|
+      if line.match(/((\d<!-- \(#spellAttackBonus:...\) -->|\d\d<!-- \(#spellAttackBonus:...\) -->)|<!-- \(#spellAttackBonus:...\) -->)/)
+        return line.split("spellAttackBonus:").last().split(") -->").first()
+      end
+    end
+  end
+
+  def parse_strength(document)
+    return document.gsub(/((\d\d<!-- \#strBonus\ -->|\d<!-- \#strBonus\ -->)|<!-- \#strBonus\ -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@strength), get_proficiency_bonus(@challenge_rating))}<!-- (#strBonus) -->")
+  end
+
+  def parse_dexterity(document)
+    return document.gsub(/((\d\d<!-- \#dexBonus\ -->|\d<!-- \#dexBonus\ -->)|<!-- \#dexBonus\ -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@dexterity), get_proficiency_bonus(@challenge_rating))}<!-- (#dexBonus) -->")
+  end
+
+  def parse_constitution(document)
+    return document.gsub(/((\d\d<!-- \#conBonus\ -->|\d<!-- \#conBonus\ -->)|<!-- \#conBonus\ -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@constitution), get_proficiency_bonus(@challenge_rating))}<!-- (#conBonus) -->")
+  end
+
+  def parse_intelligence(document)
+    return document.gsub(/((\d\d<!-- \#intBonus\ -->|\d<!-- \#intBonus\ -->)|<!-- \#intBonus\ -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@intelligence), get_proficiency_bonus(@challenge_rating))}<!-- (#intBonus) -->")
+  end
+
+  def parse_wisdom(document)
+    return document.gsub(/((\d\d<!-- \#wisBonus\ -->|\d<!-- \#wisBonus\ -->)|<!-- \#wisBonus\ -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@wisdom), get_proficiency_bonus(@challenge_rating))}<!-- (#wisBonus) -->")
+  end
+
+  def parse_charisma(document)
+    return document.gsub(/((\d\d<!-- \#chaBonus\ -->|\d<!-- \#chaBonus\ -->)|<!-- \#chaBonus\ -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@charisma), get_proficiency_bonus(@challenge_rating))}<!-- (#chaBonus) -->")
+  end
+
+  def parse_strength_with_proficency(document)
+    return document.gsub(/((\d\d<!-- \(#strBonus\+#proficiencyBonus\) -->|\d<!-- \(#strBonus\+#proficiencyBonus\) -->)|<!-- \(#strBonus\+#proficiencyBonus\) -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@strength), get_proficiency_bonus(@challenge_rating))}<!-- (#strBonus+#proficiencyBonus) -->")
+  end
+
+  def parse_dexterity_with_proficency(document)
+    return document.gsub(/((\d\d<!-- \(#dexBonus\+#proficiencyBonus\) -->|\d<!-- \(#dexBonus\+#proficiencyBonus\) -->)|<!-- \(#dexBonus\+#proficiencyBonus\) -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@dexterity), get_proficiency_bonus(@challenge_rating))}<!-- (#dexBonus+#proficiencyBonus) -->")
+  end
+
+  def parse_constitution_with_proficency(document)
+    return document.gsub(/((\d\d<!-- \(#conBonus\+#proficiencyBonus\) -->|\d<!-- \(#conBonus\+#proficiencyBonus\) -->)|<!-- \(#conBonus\+#proficiencyBonus\) -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@constitution), get_proficiency_bonus(@challenge_rating))}<!-- (#conBonus+#proficiencyBonus) -->")
+  end
+
+  def parse_intelligence_with_proficency(document)
+    return document.gsub(/((\d\d<!-- \(#intBonus\+#proficiencyBonus\) -->|\d<!-- \(#intBonus\+#proficiencyBonus\) -->)|<!-- \(#intBonus\+#proficiencyBonus\) -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@intelligence), get_proficiency_bonus(@challenge_rating))}<!-- (#intBonus+#proficiencyBonus) -->")
+  end
+
+  def parse_wisdom_with_proficency(document)
+    return document.gsub(/((\d\d<!-- \(#wisBonus\+#proficiencyBonus\) -->|\d<!-- \(#wisBonus\+#proficiencyBonus\) -->)|<!-- \(#wisBonus\+#proficiencyBonus\) -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@wisdom), get_proficiency_bonus(@challenge_rating))}<!-- (#wisBonus+#proficiencyBonus) -->")
+  end
+
+  def parse_charisma_with_proficency(document)
+    return document.gsub(/((\d\d<!-- \(#chaBonus\+#proficiencyBonus\) -->|\d<!-- \(#chaBonus\+#proficiencyBonus\) -->)|<!-- \(#chaBonus\+#proficiencyBonus\) -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@charisma), get_proficiency_bonus(@challenge_rating))}<!-- (#chaBonus+#proficiencyBonus) -->")
+  end
+
+  def parse_passive_perception(document)
+    return document.gsub(/((\d<!-- \(#passivePerception\) -->|\d\d<!-- \(#passivePerception\) -->)|<!-- \(#passivePerception\) -->)/,
+    "#{get_passive_perception(get_attribute_bonus(@wisdom), 0)}<!-- (#passivePerception+#proficiencyBonus) -->")
+  end
+
+  def parse_passive_perception_with_proficency(document)
+    return document.gsub(/((\d<!-- \(#passivePerception\+#proficiencyBonus\) -->|\d\d<!-- \(#passivePerception\+#proficiencyBonus\) -->)|<!-- \(#passivePerception\+#proficiencyBonus\) -->)/,
+    "#{get_passive_perception(get_attribute_bonus(@wisdom), get_proficiency_bonus(@challenge_rating))}<!-- (#passivePerception+#proficiencyBonus) -->")
+  end
+
+  def parse_spell_save_dc(document)
+    return document.gsub(/((\d<!-- \(#spellSaveDC:...\) -->|\d\d<!-- \(#spellSaveDC:...\) -->)|<!-- \(#spellSaveDC:...\) -->)/,
+    "#{
+    get_spell_save(
+      spell_save_attribute(get_spell_save_attribute(document), strength, dexterity, constitution, intelligence, wisdom, charisma),
+        get_proficiency_bonus(@challenge_rating))}<!-- (#spellSaveDC:#{get_spell_save_attribute(document)}) -->")
+  end
+
+  def parse_spell_attack_bonus(document)
+    return document.gsub(/((\d<!-- \(#spellAttackBonus:...\) -->|\d\d<!-- \(#spellAttackBonus:...\) -->)|<!-- \(#spellAttackBonus:...\) -->)/,
+    "#{
+    get_spell_attack(
+      spell_save_attribute(get_spell_attack_attribute(document), strength, dexterity, constitution, intelligence, wisdom, charisma),
+        get_proficiency_bonus(@challenge_rating))}<!-- (#spellAttackBonus:#{get_spell_attack_attribute(document)}) -->")
+  end
 end
+
+stat_block_parser = StatBlockedParser.new()
 
 directory_file_name = ARGV[0]
 
-file = File.open(directory_file_name, "a+")
-strength = ""
-dexterity = ""
-constitution = ""
-intelligence = ""
-wisdom = ""
-charisma = ""
-challenge_rating = ""
 document = ""
-old_document = ""
-file.each_line do |line|
-  old_document << line
+file = File.open(directory_file_name, "a+")
 
-  if line.match /data-str=/
-    strength = get_attribute(line)
-  elsif line.match /data-dex=".+"/
-    dexterity = get_attribute(line)
-  elsif line.match /data-con=".+"/
-    constitution = get_attribute(line)
-  elsif line.match /data-int=".+"/
-    intelligence = get_attribute(line)
-  elsif line.match /data-wis=".+"/
-    wisdom = get_attribute(line)
-  elsif line.match /data-cha=".+"/
-    charisma = get_attribute(line)
-  elsif line.match /<h4>Challenge<\/h4><p>.+<\/p>/
-    challenge_rating = get_challenge_rate(line)
-  end
-  if challenge_rating != ""
-    line = add_bonuses_to_html_stat_block(line, strength, dexterity, constitution, intelligence, wisdom, charisma, challenge_rating)
+file.each_line do |line|
+  if line.match(/data-str=/)
+    stat_block_parser.strength = stat_block_parser.get_attribute(line)
+  elsif line.match(/data-dex=".+"/)
+    stat_block_parser.dexterity = stat_block_parser.get_attribute(line)
+  elsif line.match(/data-con=".+"/)
+    stat_block_parser.constitution = stat_block_parser.get_attribute(line)
+  elsif line.match(/data-int=".+"/)
+    stat_block_parser.intelligence = stat_block_parser.get_attribute(line)
+  elsif line.match(/data-wis=".+"/)
+    stat_block_parser.wisdom = stat_block_parser.get_attribute(line)
+  elsif line.match(/data-cha=".+"/)
+    stat_block_parser.charisma = stat_block_parser.get_attribute(line)
+  elsif line.match(/<h4>Challenge:<\/h4><p>.+<\/p>/)
+    stat_block_parser.challenge_rating = stat_block_parser.get_challenge_rate(line)
   end
   document << line
 end
+
+document = stat_block_parser.parse_strength(document)
+document = stat_block_parser.parse_dexterity(document)
+document = stat_block_parser.parse_constitution(document)
+document = stat_block_parser.parse_intelligence(document)
+document = stat_block_parser.parse_wisdom(document)
+document = stat_block_parser.parse_charisma(document)
+document = stat_block_parser.parse_strength_with_proficency(document)
+document = stat_block_parser.parse_dexterity_with_proficency(document)
+document = stat_block_parser.parse_constitution_with_proficency(document)
+document = stat_block_parser.parse_intelligence_with_proficency(document)
+document = stat_block_parser.parse_wisdom_with_proficency(document)
+document = stat_block_parser.parse_charisma_with_proficency(document)
+document = stat_block_parser.parse_passive_perception(document)
+document = stat_block_parser.parse_passive_perception_with_proficency(document)
+document = stat_block_parser.parse_spell_save_dc(document)
+document = stat_block_parser.parse_spell_attack_bonus(document)
+
 file.truncate(0)
 
 file << document
 file.close()
-
-file_name = directory_file_name.split("/").last()
-file_directory = directory_file_name.split(file_name).first
-old_file = File.new("#{file_directory}.#{file_name}", "w")
-old_file << old_document
-old_file.close()

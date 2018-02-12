@@ -54,22 +54,20 @@
                          data-wis="16"
                          data-cha="14">
         </abilities-block>
-
+        <property-line>
+          <h4>Challenge:</h4><p>14 (1150 XP)</p>
+        </property-line>
         <property-line>
           <h4>Saving Throws:</h4>
-          <p>Str +9, Dex +10,Con +12</p>
+          <p>Str +9<!-- (#strBonus+#proficiencyBonus) --> ,
+            Dex +10<!-- (#dexBonus+#proficiencyBonus) --> ,
+            Con +9<!-- (#strBonus+#proficiencyBonus) --> </p>
         </property-line>
         <property-line>
           <h4>Skills:</h4>
-          <p>Athletics +9, Sleight of Hand +10, Stealth +10</p>
-        </property-line>
-        <property-line>
-          <h4>Damage Vulnerabilities:</h4>
-          <p>-</p>
-        </property-line>
-        <property-line>
-          <h4>Damage Immunities:</h4>
-          <p>-</p>
+          <p>Athletics +10<!-- (#dexBonus+#proficiencyBonus) -->,
+            Sleight of Hand +10<!-- (#dexBonus+#proficiencyBonus) -->,
+            Stealth +10<!-- (#dexBonus+#proficiencyBonus) --></p>
         </property-line>
         <property-line>
           <h4>Damage Resistances:</h4>
@@ -81,15 +79,11 @@
         </property-line>
         <property-line>
           <h4>Senses:</h4>
-          <p>blindsight 60ft., darkvision 120ft., passive perception 13</p>
+          <p>blindsight 60ft., darkvision 120ft., passive perception 18<!-- (#passivePerception+#proficiencyBonus) --></p>
         </property-line>
         <property-line>
           <h4>Languages:</h4>
           <p>Common, Dragonic</p>
-        </property-line>
-        <property-line>
-          <h4>Challenge:</h4>
-          <p>14 (1150 XP)</p>
         </property-line>
       </top-stats>
       <property-block>
@@ -99,8 +93,8 @@
 
       <property-block>
         <h4>Innate Spellcasting.</h4>
-          <p>The Emerald Dragon spellcasting ability is Intelligence (spell save DC 22, +14 to hit). The Sapphire Dragon can innately cast the following spells,
-            requiring no material components:</p>
+          <p>The Emerald Dragon spellcasting ability is Intelligence (spell save DC 17<!-- (#spellSaveDC:int) -->, +9<!-- (#spellAttackBonus:int) --> to hit).
+            The Sapphire Dragon can innately cast the following spells, requiring no material components:</p>
           <p>3/day each: minor image, hypnotic pattern, meteor swarm, hold person</p>
       </property-block>
 
@@ -111,18 +105,18 @@
       </property-block>
       <property-block>
         <h4>Bite.</h4>
-        <p><i>Melee Weapon Attack:</i> +9 to hit, reach 10 ft., one target.</p>
+        <p><i>Melee Weapon Attack:</i> +9<!-- (#strBonus+#proficiencyBonus) --> to hit, reach 10 ft., one target.</p>
         <p><i>Hit 10 (2d10 + 4) piercing damage</i></p>
       </property-block>
       <property-block>
         <h4>Claw.</h4>
-        <p><i>Melee Weapon Attack:</i> +9 to hit, reach 5 ft., one target.</p>
-        <p><i>Hit 10 (2d6 + 4) shashing damage</i></p>
+        <p><i>Melee Weapon Attack:</i> +9<!-- (#strBonus+#proficiencyBonus) --> to hit, reach 5 ft., one target.</p>
+        <p><i>Hit 10 (2d6 + 4<!-- (#strBonus) -->) shashing damage</i></p>
       </property-block>
       <property-block>
         <h4>Tail.</h4>
-        <p><i>Melee Weapon Attack:</i> +9 to hit, reach 15 ft., one target.</p>
-        <p><i>Hit 10 (2d8 + 4) bludgeoning damage</i></p>
+        <p><i>Melee Weapon Attack:</i> +9<!-- (#strBonus+#proficiencyBonus) --> to hit, reach 15 ft., one target.</p>
+        <p><i>Hit 10 (2d8 + 4<!-- (#strBonus) -->) bludgeoning damage</i></p>
       </property-block>
       <property-block>
         <h4>Frightful Presence.</h4>

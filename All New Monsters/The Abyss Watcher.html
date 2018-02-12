@@ -46,13 +46,16 @@
 
       <abilities-block
                       data-str="18"
-                      data-dex="18"
-                      data-con="14"
+                      data-dex="116"
+                      data-con="13"
                       data-int="11"
-                      data-wis="16"
+                      data-wis="17"
                       data-cha="4">
     </abilities-block>
 
+      <property-line>
+        <h4>Challenge:</h4><p>11 (7200 XP)</p>
+      </property-line>
       <property-line>
         <h4>Damage Immunities</h4>
         <p>poison, psychic</p>
@@ -63,14 +66,11 @@
       </property-line>
       <property-line>
         <h4>Senses</h4>
-        <p>dark vision 60ft., passive Perception </p>
+        <p>dark vision 60ft., passive Perception 13<!-- (#passivePerception+#proficiencyBonus) --></p>
       </property-line>
       <property-line>
         <h4>Languages</h4>
         <p>Understands Common, cannot speak any language</p>
-      </property-line>
-      <property-line>
-        <h4>Challenge</h4><p>11 (200 XP)</p>
       </property-line>
     </top-stats>
     <property-block>
@@ -105,14 +105,14 @@
     </property-block>
     <property-block>
       <h4>Greatsword.</h4>
-      <p><i>Melee Weapon Attack:</i> +8 to hit, reach 5 ft., one target.
-        <i>Hit:</i> 5 (1d12 + 4) slashing damage, if the Abyss Watcher is bloodied they deals
+      <p><i>Melee Weapon Attack:</i> +8<!-- (#strBonus+#proficiencyBonus) --> to hit, reach 5 ft., one target.
+        <i>Hit:</i> 5 (1d12 + 8<!-- (#strBonus) -->) slashing damage, if the Abyss Watcher is bloodied they deals
         an additional (1d6 + 1) fire damage.</p>
     </property-block>
     <property-block>
       <h4>Parrying Sword.</h4>
-      <p><i>Melee Weapon Attack:</i> +8 to hit, reach 5 ft., one target.
-        <i>Hit:</i> 5 (1d6 + 4) piercing damage, if the Abyss Watcher is bloodied they deals
+      <p><i>Melee Weapon Attack:</i> +8<!-- (#strBonus+#proficiencyBonus) --> to hit, reach 5 ft., one target.
+        <i>Hit:</i> 5 (1d6 + 8<!-- (#strBonus) -->) piercing damage, if the Abyss Watcher is bloodied they deals
         an additional (1d6 + 1) fire damage.</p>
     </property-block>
     <property-block>

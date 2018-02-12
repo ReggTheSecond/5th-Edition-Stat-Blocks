@@ -53,14 +53,14 @@
                          data-wis="14"
                          data-cha="4">
         </abilities-block>
-
         <property-line>
-          <h4>Saving Throws:</h4>
-          <p>Dex +5, Con +6</p>
+          <h4>Challenge:</h4>
+          <p>6 (2300 XP)</p>
         </property-line>
         <property-line>
-          <h4>Skills:</h4>
-          <p>-</p>
+          <h4>Saving Throws:</h4>
+          <p>Dex +5<!-- (#conBonus+#proficiencyBonus) -->,
+            Con +6<!-- (#conBonus+#proficiencyBonus) --></p>
         </property-line>
         <property-line>
           <h4>Damage Immunities:</h4>
@@ -76,15 +76,11 @@
         </property-line>
         <property-line>
           <h4>Senses:</h4>
-          <p>dark vision 60 ft. passive perception 12</p>
+          <p>dark vision 60 ft. passive perception 12<!-- (#passivePerception) --></p>
         </property-line>
         <property-line>
           <h4>Languages:</h4>
           <p>understands the languages of its creatir but can't speak</p>
-        </property-line>
-        <property-line>
-          <h4>Challenge:</h4>
-          <p>6 (2300 XP)</p>
         </property-line>
       </top-stats>
 
@@ -118,13 +114,13 @@
       </property-block>
       <property-block>
         <h4>Bone Spur.</h4>
-        <p><i>Melee Weapon Attack:</i> +6 to hit, reach 10 ft., one target.</p>
-        <p><i>Hit (1d6 +3) piercing damage</i></p>
+        <p><i>Melee Weapon Attack:</i> +6<!-- (#strBonus+#proficiencyBonus) --> to hit, reach 10 ft., one target.</p>
+        <p><i>Hit (1d6 +3<!-- (#strBonus) -->) piercing damage</i></p>
       </property-block>
       <property-block>
         <h4>Bone Volley (Recharge 6).</h4>
-        <p><i>Melee Weapon Attack:</i> +6 to hit, reach ft., each creature in a fifteen ft. radius.</p>
-        <p><i>Hit (2d6 +3) piercing damage</i></p>
+        <p><i>Melee Weapon Attack:</i> +6<!-- (#strBonus+#proficiencyBonus) --> to hit, reach ft., each creature in a fifteen ft. radius.</p>
+        <p><i>Hit (2d6 +3<!-- (#strBonus) -->) piercing damage</i></p>
       </property-block>
       <property-block>
         <h4>Bone Death (Reaction).</h4>

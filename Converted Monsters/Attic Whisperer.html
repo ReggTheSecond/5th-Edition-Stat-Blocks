@@ -54,14 +54,19 @@
                          data-wis="16"
                          data-cha="17">
         </abilities-block>
-
+        <property-line>
+          <h4>Challenge:</h4><p>3 (700 XP)</p>
+        </property-line>
         <property-line>
           <h4>Saving Throws:</h4>
-          <p>Dex +5, Cha +5</p>
+          <p>Dex +5<!-- (#dexBonus+#proficiencyBonus) -->,
+            Cha +5<!-- (#chaBonus+#proficiencyBonus) --></p>
         </property-line>
         <property-line>
           <h4>Skills:</h4>
-          <p>Acrobatics +5, Deception +5 Stealth +5</p>
+          <p>Acrobatics +5<!-- (#dexBonus+#proficiencyBonus) -->,
+            Deception +5<!-- (#chaBonus+#proficiencyBonus) -->,
+            Stealth +5<!-- (#dexBonus+#proficiencyBonus) --></p>
         </property-line>
         <property-line>
           <h4>Damage Vulnerabilities:</h4>
@@ -77,15 +82,11 @@
         </property-line>
         <property-line>
           <h4>Senses:</h4>
-          <p>darkvision 60 ft., passive Perception </p>
+          <p>darkvision 60 ft., passive Perception 15<!-- (#passivePerception) --></p>
         </property-line>
         <property-line>
           <h4>Languages:</h4>
-          <p>the languages it knew in life</p>
-        </property-line>
-        <property-line>
-          <h4>Challenge:</h4>
-          <p>3 (700xp)</p>
+          <p>any languages it knew in life</p>
         </property-line>
       </top-stats>
       <property-block>
@@ -97,8 +98,8 @@
       <h3>Actions</h3>
       <property-block>
         <h4>Bite.</h4>
-        <p><i>Melee Weapon Attack:</i> +5 to hit, reach 5 ft., one target.</p>
-        <p><i>Hit (1d4 +3) piercing damage</i></p>
+        <p><i>Melee Weapon Attack:</i> +5<!-- (#dexBonus+#proficiencyBonus) --> to hit, reach 5 ft., one target.</p>
+        <p><i>Hit (1d4 +3<!-- (#dexBonus) -->) piercing damage</i></p>
       </property-block>
       <property-block>
         <h4>Steal Breath.</h4>
