@@ -103,33 +103,33 @@ class StatBlockedParser
   end
 
   def parse_strength(document)
-    return parse_dexterity(document.gsub(/((\d\d<!-- \#strBonus\ -->|\d<!-- \#strBonus\ -->)|<!-- \#strBonus\ -->)/,
-    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@strength), get_proficiency_bonus(@challenge_rating))}<!-- (#strBonus) -->"))
+    return parse_dexterity(document.gsub(/((\d\d<!-- \(#strBonus\) -->|\d<!-- \(#strBonus\) -->)|<!-- \(#strBonus\) -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@strength), 0)}<!-- (#strBonus) -->"))
   end
 
   def parse_dexterity(document)
-    return parse_constitution(document.gsub(/((\d\d<!-- \#dexBonus\ -->|\d<!-- \#dexBonus\ -->)|<!-- \#dexBonus\ -->)/,
-    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@dexterity), get_proficiency_bonus(@challenge_rating))}<!-- (#dexBonus) -->"))
+    return parse_constitution(document.gsub(/((\d\d<!-- \(#dexBonus\) -->|\d<!-- \(#dexBonus\) -->)|<!-- \(#dexBonus\) -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@dexterity), 0)}<!-- (#dexBonus) -->"))
   end
 
   def parse_constitution(document)
-    return parse_intelligence(document.gsub(/((\d\d<!-- \#conBonus\ -->|\d<!-- \#conBonus\ -->)|<!-- \#conBonus\ -->)/,
-    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@constitution), get_proficiency_bonus(@challenge_rating))}<!-- (#conBonus) -->"))
+    return parse_intelligence(document.gsub(/((\d\d<!-- \(#conBonus\) -->|\d<!-- \(#conBonus\) -->)|<!-- \(#conBonus\) -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@constitution), 0)}<!-- (#conBonus) -->"))
   end
 
   def parse_intelligence(document)
-    return parse_wisdom(document.gsub(/((\d\d<!-- \#intBonus\ -->|\d<!-- \#intBonus\ -->)|<!-- \#intBonus\ -->)/,
-    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@intelligence), get_proficiency_bonus(@challenge_rating))}<!-- (#intBonus) -->"))
+    return parse_wisdom(document.gsub(/((\d\d<!-- \(#intBonus\) -->|\d<!-- \(#intBonus\) -->)|<!-- \(#intBonus\) -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@intelligence), 0)}<!-- (#intBonus) -->"))
   end
 
   def parse_wisdom(document)
-    return parse_charisma(document.gsub(/((\d\d<!-- \#wisBonus\ -->|\d<!-- \#wisBonus\ -->)|<!-- \#wisBonus\ -->)/,
-    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@wisdom), get_proficiency_bonus(@challenge_rating))}<!-- (#wisBonus) -->"))
+    return parse_charisma(document.gsub(/((\d\d<!-- \(#wisBonus\) -->|\d<!-- \(#wisBonus\) -->)|<!-- \(#wisBonus\) -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@wisdom), 0)}<!-- (#wisBonus) -->"))
   end
 
   def parse_charisma(document)
-    return parse_strength_with_proficency(document.gsub(/((\d\d<!-- \#chaBonus\ -->|\d<!-- \#chaBonus\ -->)|<!-- \#chaBonus\ -->)/,
-    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@charisma), get_proficiency_bonus(@challenge_rating))}<!-- (#chaBonus) -->"))
+    return parse_strength_with_proficency(document.gsub(/((\d\d<!-- \(#chaBonus\) -->|\d<!-- \(#chaBonus\) -->)|<!-- \(#chaBonus\) -->)/,
+    "#{get_attribute_bonus_plus_proficiency_bonus(get_attribute_bonus(@charisma), 0)}<!-- (#chaBonus) -->"))
   end
 
   def parse_strength_with_proficency(document)
@@ -235,7 +235,6 @@ file.each_line do |line|
   end
   document << line
 end
-
 document = stat_block_parser.start_parse(document)
 
 file.truncate(0)
