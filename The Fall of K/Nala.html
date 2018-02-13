@@ -57,23 +57,22 @@
 
         <property-line>
           <h4>Saving Throws:</h4>
-          <p>Str +5</p>
+          <p>Str +5<!-- (#strBonus+#proficiencyBonus) --></p>
         </property-line>
         <property-line>
           <h4>Skills:</h4>
-          <p>Athletics +5, Perception +2</p>
+          <p>Athletics +5<!-- (#strBonus+#proficiencyBonus) -->, Perception +2<!-- (#wisBonus+#proficiencyBonus) --></p>
         </property-line>
         <property-line>
           <h4>Senses:</h4>
-          <p>Passive perception 12</p>
+          <p>Passive perception 12<!-- (#passivePerception+#proficiencyBonus) --></p>
         </property-line>
         <property-line>
           <h4>Languages:</h4>
           <p>Common, Giant</p>
         </property-line>
         <property-line>
-          <h4>Challenge:</h4>
-          <p>-</p>
+          <h4>Challenge:</h4><p>3 (700 XP)</p>
         </property-line>
       </top-stats>
       <property-block>
@@ -88,18 +87,18 @@
       </property-block>
       <property-block>
         <h4>Longsword.</h4>
-        <p><i>Melee Weapon Attack:</i> +5 to hit, reach 5ft., one target.</p>
-        <p><i>Hit (1d8 +3) slashing damage</i></p>
+        <p><i>Melee Weapon Attack:</i> +5<!-- (#strBonus+#proficiencyBonus) --> to hit, reach 5ft., one target.</p>
+        <p><i>Hit (1d8 +1<!-- (#dexBonus) -->) slashing damage</i></p>
       </property-block>
       <property-block>
         <h4>Shortsword.</h4>
-        <p><i>Melee Weapon Attack:</i> +5 to hit, reach 5ft., one target.</p>
-        <p><i>Hit (1d6 +3) piercing damage</i></p>
+        <p><i>Melee Weapon Attack:</i> +5<!-- (#strBonus+#proficiencyBonus) --> to hit, reach 5ft., one target.</p>
+        <p><i>Hit (1d6 +1<!-- (#dexBonus) -->) piercing damage</i></p>
       </property-block>
       <property-block>
         <h4>Heavy Crossbow.</h4>
-        <p><i>Ranged Weapon Attack:</i> +3 to hit, range 100/400ft., one target.</p>
-        <p><i>Hit (1d10 +1) piercing damage</i></p>
+        <p><i>Ranged Weapon Attack:</i> +3<!-- (#dexBonus+#proficiencyBonus) --> to hit, range 100/400ft., one target.</p>
+        <p><i>Hit (1d10 +1<!-- (#dexBonus) -->) piercing damage</i></p>
       </property-block>
     </stat-block>
   </body>

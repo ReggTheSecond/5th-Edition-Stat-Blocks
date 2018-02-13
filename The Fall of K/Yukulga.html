@@ -57,23 +57,23 @@
 
         <property-line>
           <h4>Saving Throws:</h4>
-          <p>Str +6, Dex +7, Con +6</p>
+          <p>Str +6<!-- (#strBonus+#proficiencyBonus) -->, Dex +7<!-- (#dexBonus+#proficiencyBonus) -->, Con +6<!-- (#conBonus+#proficiencyBonus) --></p>
         </property-line>
         <property-line>
           <h4>Skills:</h4>
-          <p>Athletics +6, Intimidation +6, Perception +4</p>
+          <p>Athletics +6<!-- (#strBonus+#proficiencyBonus) -->, Intimidation +6<!-- (#chaBonus+#proficiencyBonus) -->,
+            Perception +4<!-- (#wisBonus+#proficiencyBonus) --></p>
         </property-line>
         <property-line>
           <h4>Senses:</h4>
-          <p>Passive perception 14</p>
+          <p>Passive perception 14<!-- (#passivePerception+#proficiencyBonus) --></p>
         </property-line>
         <property-line>
           <h4>Languages:</h4>
           <p>Common</p>
         </property-line>
         <property-line>
-          <h4>Challenge:</h4>
-          <p>-</p>
+          <h4>Challenge:</h4><p>6 (10 Xp)</p>
         </property-line>
       </top-stats>
 
@@ -93,8 +93,8 @@
       </property-block>
       <property-block>
         <h4>Spear.</h4>
-        <p><i>Melee Weapon Attack:</i> +6 to hit, reach 10ft., one target.</p>
-        <p><i>Hit (1d8 +3) piercing damage</i></p>
+        <p><i>Melee Weapon Attack:</i> +7<!-- (#dexBonus+#proficiencyBonus) --> to hit, reach 10ft., one target.</p>
+        <p><i>Hit (1d8 +4<!-- (#dexBonus) -->) piercing damage</i></p>
       </property-block>
     </stat-block>
   </body>

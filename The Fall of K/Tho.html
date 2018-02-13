@@ -51,13 +51,13 @@
                          data-dex="14"
                          data-con="17"
                          data-int="11"
-                         data-wis="12"
+                         data-wis="16"
                          data-cha="10">
         </abilities-block>
 
         <property-line>
           <h4>Skills:</h4>
-          <p>Perception +7</p>
+          <p>Perception +6<!-- (#wisBonus+#proficiencyBonus) --></p>
         </property-line>
         <property-line>
           <h4>Damage Immunities:</h4>
@@ -65,15 +65,14 @@
         </property-line>
         <property-line>
           <h4>Senses:</h4>
-          <p>passive Perception 17</p>
+          <p>passive Perception 16<!-- (#passivePerception+#proficiencyBonus) --></p>
         </property-line>
         <property-line>
           <h4>Languages:</h4>
           <p>Common (can't speak in bear form)</p>
         </property-line>
         <property-line>
-          <h4>Challenge:</h4>
-          <p>-</p>
+          <h4>Challenge:</h4><p>5 (4000 XP)</p>
         </property-line>
       </top-stats>
 
@@ -95,18 +94,18 @@
       </property-block>
       <property-block>
         <h4>Bite (Bear or Hybrid Form Only).</h4>
-        <p><i>Melee Weapon Attack: +7 to hit, reach 5 ft., one target.</p>
-        <p><i>Hit</i>: 15 (2d10 + 4) piercing damage. If the target is a humanoid, it must succeed on a DC 14 Constitution saving throw or be cursed with were bear lycanthropy.</p>
+        <p><i>Melee Weapon Attack: +7<!-- (#strBonus+#proficiencyBonus) --> to hit, reach 5 ft., one target.</p>
+        <p><i>Hit</i>: 15 (2d10 + 4<!-- (#strBonus) -->) piercing damage. If the target is a humanoid, it must succeed on a DC 14 Constitution saving throw or be cursed with were bear lycanthropy.</p>
       </property-block>
       <property-block>
         <h4>Claw (Bear or Hybrid Form Only).</h4>
-        <p><i>Melee Weapon Attack: +7 to hit, reach 5 ft., one target.</p>
-        <p><i>Hit</i>: 13 (2d8 + 4) slashing damage.</p>
+        <p><i>Melee Weapon Attack: +7<!-- (#strBonus+#proficiencyBonus) --> to hit, reach 5 ft., one target.</p>
+        <p><i>Hit</i>: 13 (2d8 + 4<!-- (#strBonus) -->) slashing damage.</p>
       </property-block>
       <property-block>
         <h4>Greataxe (Humanoid or Hybrid Form Only).</h4>
-        <p><i>Melee Weapon Attack: +7 to hit, reach 5 ft., one target</p>
-        <p><i>Hit</i>: 10 (1d12 + 4) slashing damage.</p>
+        <p><i>Melee Weapon Attack: +7<!-- (#strBonus+#proficiencyBonus) --> to hit, reach 5 ft., one target</p>
+        <p><i>Hit</i>: 10 (1d12 + 4<!-- (#strBonus) -->) slashing damage.</p>
       </property-block>
     </stat-block>
   </body>

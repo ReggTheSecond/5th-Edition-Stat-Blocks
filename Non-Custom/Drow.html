@@ -50,23 +50,22 @@
                          data-con="10"
                          data-int="11"
                          data-wis="11"
-                         data-cha=""12>
+                         data-cha="12">
         </abilities-block>
         <property-line>
           <h4>Skills:</h4>
-          <p>Perception +2, Stealth +4</p>
+          <p>Perception +2<!-- (#wisBonus+#proficiencyBonus) -->, Stealth +4<!-- (#dexBonus+#proficiencyBonus) --></p>
         </property-line>
         <property-line>
           <h4>Senses:</h4>
-          <p>darkvision 120 ft., psssive Perception 12</p>
+          <p>darkvision 120 ft., psssive Perception 12<!-- (#passivePerception+#proficiencyBonus) --></p>
         </property-line>
         <property-line>
           <h4>Languages:</h4>
           <p>Elvish, Undercommon</p>
         </property-line>
         <property-line>
-          <h4>Challenge:</h4>
-          <p>1/4 (50xp)</p>
+          <h4>Challenge:</h4><p>1/4 (50xp)</p>
         </property-line>
       </top-stats>
       <property-block>
@@ -86,13 +85,13 @@
       <h3>Actions</h3>
       <property-block>
         <h4>Shortsword.</h4>
-        <p><i>Melee Weapon Attack:</i> +4 to hit, reach 5ft., one target.</p>
-        <p><i>Hit:</i> 1d6 + 2 piercing damage.</p>
+        <p><i>Melee Weapon Attack:</i> +4<!-- (#dexBonus+#proficiencyBonus) --> to hit, reach 5ft., one target.</p>
+        <p><i>Hit:</i> 1d6 + 2<!-- (#dexBonus) --> piercing damage.</p>
       </property-block>
       <property-block>
         <h4>Hand Crossbow.</h4>
-        <p><i>Ranged Weapon Attack:</i> +4 to hit, reach 30/120ft., one target.</p>
-        <p><i>Hit:</i> 1d6 +4 piercing damage, and the target must succeed on a  DC13
+        <p><i>Ranged Weapon Attack:</i> +4<!-- (#dexBonus+#proficiencyBonus) --> to hit, reach 30/120ft., one target.</p>
+        <p><i>Hit:</i> 1d6 +2<!-- (#dexBonus) --> piercing damage, and the target must succeed on a  DC13
           Constitution saving throw or be poisoned for 1 hour. If the target fails by 5 or more,
           the target is also unconscious while poisoned in this way. The target wakes up if it
           takes damage or if another creature takes an action to shake it awake.</p>

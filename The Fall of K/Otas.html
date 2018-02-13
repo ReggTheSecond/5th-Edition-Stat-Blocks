@@ -64,21 +64,20 @@
         </property-line>
         <property-line>
           <h4>Senses</h4>
-          <p>Passive Perception 13</p>
+          <p>Passive Perception 14<!-- (#passivePerception+#proficiencyBonus) --></p>
         </property-line>
         <property-line>
           <h4>Languages</h4>
           <p>Common, Elven, </p>
         </property-line>
         <property-line>
-          <h4>Challenge</h4>
-          <p>? ( XP)</p>
+          <h4>Challenge</h4><p>5 (1100 XP)</p>
         </property-line>
       </top-stats>
 
       <property-block>
         <h4>Spellcasting.</h4>
-        <p>Calor is a 6th level spellcaster. His spellcasting ability is intelligence (spell save 14, +6 to hit).
+        <p>Calor is a 6th level spellcaster. His spellcasting ability is intelligence (spell save 14<!-- (#spellSaveDC:int) -->, +6<!-- (#spellAttackBonus:int) --> to hit).
         Calor has the following spells prepared:</p>
         <p>Cantrips (At will): <i>Fire Bolts, Mage Hand, Ray of Frost</i></p>
         <p>1st Level (4 slots): <i>Mage Armor, sleep, magic missile, alarm</i></p>
@@ -94,8 +93,8 @@
 
       <property-block>
         <h4>Dagger.</h4>
-        <p><I>Melee or Ranged Weapon Attack</i>: +4 to hit, reach 5 ft. or range 20 / 60 ft., one target.
-        <i>Hit</i> (1d4 + 0) piercing damage</p>
+        <p><I>Melee or Ranged Weapon Attack</i>: +3<!-- (#dexBonus+#proficiencyBonus) --> to hit, reach 5 ft. or range 20 / 60 ft., one target.
+        <i>Hit</i> (1d4 + 0<!-- (#dexBonus) -->) piercing damage</p>
       </property-block>
     </stat-block>
   </body>

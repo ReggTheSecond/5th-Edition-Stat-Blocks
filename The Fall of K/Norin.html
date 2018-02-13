@@ -57,11 +57,11 @@
 
         <property-line>
           <h4>Saving Throws:</h4>
-          <p>Int +5, Wis +3</p>
+          <p>Int +5<!-- (#intBonus+#proficiencyBonus) -->, Wis +3<!-- (#wisBonus+#proficiencyBonus) --></p>
         </property-line>
         <property-line>
           <h4>Skills:</h4>
-          <p>Arcana +5, History +5</p>
+          <p>Arcana +5<!-- (#intBonus+#proficiencyBonus) -->, History +5<!-- (#intBonus+#proficiencyBonus) --></p>
         </property-line>
         <property-line>
           <h4>Damage Vulnerabilities:</h4>
@@ -81,21 +81,20 @@
         </property-line>
         <property-line>
           <h4>Senses:</h4>
-          <p>passive perception 11</p>
+          <p>passive perception 13<!-- (#passivePerception+#proficiencyBonus) --></p>
         </property-line>
         <property-line>
           <h4>Languages:</h4>
           <p>Common, elven, dwarven, primordial</p>
         </property-line>
         <property-line>
-          <h4>Challenge:</h4>
-          <p>4 (1100)</p>
+          <h4>Challenge:</h4><p>4 (1100)</p>
         </property-line>
       </top-stats>
 
       <property-block>
         <h4>Spellcasting.</h4>
-        <p>Norin is a spellcaster. His spellcasting ability is Intelligence (spell save DC 1, +5 to hit with spell attacks). Norin has the following wizard spells prepared:</p>
+        <p>Norin is a spellcaster. His spellcasting ability is Intelligence (spell save DC 13<!-- (#spellSaveDC:int) -->, +5<!-- (#spellAttackBonus:int) --> to hit with spell attacks). Norin has the following wizard spells prepared:</p>
         <p>Cantrips (at will):<i> <a href="https://roll20.net/compendium/dnd5e/Chill%20Touch#h-Chill%20Touch">chill touch</a>,
           <a href="https://roll20.net/compendium/dnd5e/Spells:Dancing%20Lights#h-Dancing%20Lights">dancing lights</a>,
             <a href="https://roll20.net/compendium/dnd5e/Mage%20Hand#h-Mage%20Hand">mage hand</a>,
@@ -119,12 +118,12 @@
 
       <property-block>
         <h4>Dagger.</h4>
-        <p><i>Melee Weapon Attack:</i> +3 to hit, reach 5ft., one target.</p>
-        <p><i>Hit (1d4 +2) piercing damage</i></p>
+        <p><i>Melee Weapon Attack:</i> +4<!-- (#dexBonus+#proficiencyBonus) --> to hit, reach 5ft., one target.</p>
+        <p><i>Hit (1d4 +2<!-- (#dexBonus) -->) piercing damage</i></p>
       </property-block>
       <property-block>
         <h4>Withering Touch.</h4>
-        <p><i>Melee Spell Attack:</i> +5 to hit, reach 5ft., one target.</p>
+        <p><i>Melee Spell Attack:</i> +4<!-- (#dexBonus+#proficiencyBonus) --> to hit, reach 5ft., one target.</p>
         <p><i>Hit (1d4) necotic damage</i></p>
       </property-block>
     </stat-block>

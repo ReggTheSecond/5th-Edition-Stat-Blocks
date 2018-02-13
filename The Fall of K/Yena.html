@@ -57,31 +57,29 @@
 
         <property-line>
           <h4>Saving Throws:</h4>
-          <p>Int +6, Wis +4</p>
+          <p>Int +6<!-- (#intBonus+#proficiencyBonus) -->, Wis +4<!-- (#wisBonus+#proficiencyBonus) --></p>
         </property-line>
         <property-line>
           <h4>Skills:</h4>
-          <p>Arcana +6, History +6</p>
+          <p>Arcana +6<!-- (#intBonus+#proficiencyBonus) -->, History +6<!-- (#intBonus+#proficiencyBonus) --></p>
         </property-line>
         <property-line>
           <h4>Senses:</h4>
-          <p>passive Perception 11</p>
+          <p>passive Perception 14<!-- (#passivePerception+#proficiencyBonus) --></p>
         </property-line>
         <property-line>
           <h4>Languages:</h4>
           <p>Common, elven, abyssal</p>
         </property-line>
         <property-line>
-          <h4>Challenge:</h4>
-          <p>6 (2300 XP)</p>
+          <h4>Challenge:</h4><p>6 (2300 XP)</p>
         </property-line>
       </top-stats>
 
       <property-block>
         <h4>Spellcasting.</h4>
-        <p>Yena is a 9th-level spellcaster. It's spellcasting ability is Intelligence (spell save DC 14, +6 to hitwith spell attacks). The conjurer has the following wizard spells prepared:</p>
-        <p>Calor is a 6th level spellcaster. His spellcasting ability is intelligence (spell save 14, +6 to hit).
-        Calor has the following spells prepared:</p>
+        <p>Yena is a 9th-level spellcaster. It's spellcasting ability is Intelligence (spell save DC 14<!-- (#spellSaveDC:int) -->, +6<!-- (#spellAttackBonus:int) --> to hitwith spell attacks). The conjurer has the following wizard spells prepared:</p>
+        <p>Yena has the following spells prepared:</p>
         <p>Cantrips (At will): <i>acid splash*, mage hand*, poison spray*, prestidigitation</i></p>
         <p>1st Level (4 slots): <i>Mage Armor, magic missile, unseen servent*</i></p>
         <p>2st Level (3 slots): <i>cloud of daggers*, misty step*, web*</i></p>
@@ -99,8 +97,8 @@
 
       <property-block>
         <h4>Dagger.</h4>
-        <p><i>Melee Weapon Attack:</i> +5 to hit, reach 5ft. or 20/60ft, one target.</p>
-        <p><i>Hit 4(1d4 +2) piercing damage</i></p>
+        <p><i>Melee Weapon Attack:</i> +5<!-- (#dexBonus+#proficiencyBonus) --> to hit, reach 5ft. or 20/60ft, one target.</p>
+        <p><i>Hit 4(1d4 +2<!-- (#dexBonus) -->) piercing damage</i></p>
       </property-block>
     </stat-block>
   </body>

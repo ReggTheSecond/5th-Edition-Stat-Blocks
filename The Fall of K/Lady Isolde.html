@@ -49,11 +49,11 @@
                       data-con="20"
                       data-int="12"
                       data-wis="16"
-                      data-cha="18">
+                      data-cha="20">
       </abilities-block>
       <property-line>
         <h4>Saving Throws</h4>
-        <p>Dex +6, Wis +9, Cha +10</p>
+        <p>Dex +6<!-- (#dexBonus+#proficiencyBonus) -->, Wis +9<!-- (#wisBonus+#proficiencyBonus) -->, Cha +11<!-- (#chaBonus+#proficiencyBonus) --></p>
       </property-line>
       <property-line>
         <h4>Damage Immunities</h4>
@@ -65,15 +65,14 @@
       </property-line>
       <property-line>
         <h4>Senses</h4>
-        <p>darkvision 120 ft., passive Perception 13</p>
+        <p>darkvision 120 ft., passive Perception 3<!-- (#wisBonus) --></p>
       </property-line>
       <property-line>
         <h4>Languages</h4>
         <p>Abyssal, Common</p>
       </property-line>
       <property-line>
-        <h4>Challenge</h4>
-        <p>17 (18,000 XP)</p>
+        <h4>Challenge:</h4><p>17 (18000 XP)</p>
       </property-line>
     </top-stats>
     <property-block>
@@ -86,8 +85,8 @@
     </property-block>
     <property-block>
       <h4>Spellcasting.</h4>
-      <p>Lady Isolde is a 19th-level spellcaster. Her spellcasting ability is Charisma (spell save DC 18, +10 to hit with spell attacks). She has the
-      following spells prepared:</p>
+      <p>Lady Isolde is a 19th-level spellcaster. Her spellcasting ability is Charisma (spell save DC 19<!-- (#spellSaveDC:cha) -->, +11<!-- (#spellAttackBonus:cha) -->
+        to hit with spell attacks). She has the following spells prepared:</p>
       <p>1st level (4 slots): command, compelled duel, searing smite</p>
       <p>2nd level (3 slots): hold person, magic weapon</p>
       <p>3rd level (3 slots): dispel magic, elemental weapon</p>
@@ -101,8 +100,8 @@
     </property-block>
     <property-block>
       <h4>Longsword.</h4>
-      <p><i>Melee or Ranged Weapon Attack:</i> +4 to hit, reach 5 ft., one target.</p>
-        <p><i>Hit:</i> 1d8 +5 slashing damage, or 1d10 +5 slashing damage if used with two hands, plus 4d8 necrotic.</p>
+      <p><i>Melee or Ranged Weapon Attack:</i> +11<!-- (#strBonus+#proficiencyBonus) --> to hit, reach 5 ft., one target.</p>
+        <p><i>Hit:</i> 1d8 +5<!-- (#strBonus) --> slashing damage, or 1d10 +5<!-- (#strBonus) --> slashing damage if used with two hands, plus 4d8 necrotic.</p>
     </property-block>
     <property-block>
       <h4>Hellfire Orb 1/Day.</h4>
