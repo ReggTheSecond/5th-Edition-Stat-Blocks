@@ -58,19 +58,19 @@ class StatBlockedParser
     return 10 + wisdom + proficiencyBonus
   end
 
-  def spell_save_attribute(spell_attribute, strength, dexterity, constitution, intelligence, wisdom, charisma)
+  def spell_save_attribute(spell_attribute)
     if spell_attribute == "str"
-      return strength
+      return @strength
     elsif spell_attribute == "dex"
-      return dexterity
+      return @dexterity
     elsif spell_attribute == "con"
-      return constitution
+      return @constitution
     elsif spell_attribute == "int"
-      return intelligence
+      return @intelligence
     elsif spell_attribute == "wis"
-      return wisdom
+      return @wisdom
     elsif spell_attribute == "cha"
-      return charisma
+      return @charisma
     end
   end
 
@@ -168,7 +168,7 @@ class StatBlockedParser
   end
 
   def parse_passive_perception_with_proficency(document)
-    if document.include?("<!-- \(#spellSaveDC:...\) -->")
+    if document.include?("<!-- (#spellSaveDC:")
       return parse_spell_save_dc(document.gsub(/((\d<!-- \(#passivePerception\+#proficiencyBonus\) -->|\d\d<!-- \(#passivePerception\+#proficiencyBonus\) -->)|<!-- \(#passivePerception\+#proficiencyBonus\) -->)/,
     "#{get_passive_perception(get_attribute_bonus(@wisdom), get_proficiency_bonus(@challenge_rating))}<!-- (#passivePerception+#proficiencyBonus) -->"))
     else
@@ -181,7 +181,7 @@ class StatBlockedParser
     return parse_spell_attack_bonus(document.gsub(/((\d<!-- \(#spellSaveDC:...\) -->|\d\d<!-- \(#spellSaveDC:...\) -->)|<!-- \(#spellSaveDC:...\) -->)/,
     "#{
     get_spell_save(
-      spell_save_attribute(get_spell_save_attribute(document), strength, dexterity, constitution, intelligence, wisdom, charisma),
+      spell_save_attribute(get_spell_save_attribute(document)),
         get_proficiency_bonus(@challenge_rating))}<!-- (#spellSaveDC:#{get_spell_save_attribute(document)}) -->"))
   end
 
@@ -189,55 +189,70 @@ class StatBlockedParser
     return document.gsub(/((\d<!-- \(#spellAttackBonus:...\) -->|\d\d<!-- \(#spellAttackBonus:...\) -->)|<!-- \(#spellAttackBonus:...\) -->)/,
     "#{
     get_spell_attack(
-      spell_save_attribute(get_spell_attack_attribute(document), strength, dexterity, constitution, intelligence, wisdom, charisma),
+      spell_save_attribute(get_spell_attack_attribute(document)),
         get_proficiency_bonus(@challenge_rating))}<!-- (#spellAttackBonus:#{get_spell_attack_attribute(document)}) -->")
   end
 end
 
-stat_block_parser = StatBlockedParser.new()
+def update_stat_block(directory_file_name)
+  stat_block_parser = StatBlockedParser.new()
+  document = ""
+  file = File.open(directory_file_name, "a+")
+
+  file.each_line do |line|
+    if line.match(/data-str=/)
+      stat_block_parser.strength = stat_block_parser.get_attribute(line)
+    elsif line.match(/data-dex=".+"/)
+      stat_block_parser.dexterity = stat_block_parser.get_attribute(line)
+    elsif line.match(/data-con=".+"/)
+      stat_block_parser.constitution = stat_block_parser.get_attribute(line)
+    elsif line.match(/data-int=".+"/)
+      stat_block_parser.intelligence = stat_block_parser.get_attribute(line)
+    elsif line.match(/data-wis=".+"/)
+      stat_block_parser.wisdom = stat_block_parser.get_attribute(line)
+    elsif line.match(/data-cha=".+"/)
+      stat_block_parser.charisma = stat_block_parser.get_attribute(line)
+    elsif line.match(/<h4>Challenge:<\/h4><p>.+<\/p>/) || line.match(/<h4>Challenge<\/h4><p>.+<\/p>/)
+      stat_block_parser.challenge_rating = stat_block_parser.get_challenge_rate(line)
+    end
+    document << line
+  end
+
+  if stat_block_parser.challenge_rating != nil
+    document = stat_block_parser.start_parse(document)
+    file.truncate(0)
+
+    file << document
+    file.close()
+  end
+end
 
 directory_file_name = ARGV[0]
 
 if directory_file_name == nil
   begin
-    puts "You did not enter a file to have the stat filled in. Would you like to fill in the stats for all character sheets in this directory and all sub directories? (y/n)"
+    puts "You did not enter a file to have the stat filled in. Would you like to fill in the stats for all character sheets in a directory? (y/n)"
     answer = gets.chomp
     answer = answer.downcase.strip
   end while answer != "y" && answer != "n"
-  begin
-    if answer == "n"
+  if answer == "n"
+    begin
       puts "Please specify a file:"
       directory_file_name = gets.chomp
-    else
-      abort
+    end while !File.exist?(directory_file_name)
+    update_stat_block(directory_file_name)
+  elsif answer == "y"
+    begin
+      puts "Please specify a Directory:"
+      directory_name = gets.chomp
+    end while !Dir.exist?(directory_name)
+
+    files_in_directory = Dir.glob("#{directory_name}/*.html")
+    files_in_directory.each do |file|
+      puts file.to_s
+      update_stat_block(file)
     end
-  end while !File.exist?(directory_file_name)
-end
-
-document = ""
-file = File.open(directory_file_name, "a+")
-
-file.each_line do |line|
-  if line.match(/data-str=/)
-    stat_block_parser.strength = stat_block_parser.get_attribute(line)
-  elsif line.match(/data-dex=".+"/)
-    stat_block_parser.dexterity = stat_block_parser.get_attribute(line)
-  elsif line.match(/data-con=".+"/)
-    stat_block_parser.constitution = stat_block_parser.get_attribute(line)
-  elsif line.match(/data-int=".+"/)
-    stat_block_parser.intelligence = stat_block_parser.get_attribute(line)
-  elsif line.match(/data-wis=".+"/)
-    stat_block_parser.wisdom = stat_block_parser.get_attribute(line)
-  elsif line.match(/data-cha=".+"/)
-    stat_block_parser.charisma = stat_block_parser.get_attribute(line)
-  elsif line.match(/<h4>Challenge:<\/h4><p>.+<\/p>/)
-    stat_block_parser.challenge_rating = stat_block_parser.get_challenge_rate(line)
   end
-  document << line
+else
+  update_stat_block(directory_file_name)
 end
-document = stat_block_parser.start_parse(document)
-
-file.truncate(0)
-
-file << document
-file.close()
